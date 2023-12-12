@@ -1,9 +1,9 @@
 #include "shell.h"
 
 void *myrealloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void _lineptr(char **lineptr, size_t *ptr_size,
+void _lnptr(char **lnptr, size_t *ptr_size,
 		char *buffer, size_t buffer_size);
-ssize_t mygetline(char **lineptr, size_t *ptr_size, FILE *fd);
+ssize_t mygetln(char **lineptr, size_t *ptr_size, FILE *fd);
 
 /**
  * myrealloc - allocates a memory block using malloc and free.
@@ -57,22 +57,22 @@ void *myrealloc(void *ptr, unsigned int old_size, unsigned int new_size)
 }
 
 /**
- * _lineptr - Reassigns the lineptr variable for mygetline.
- * @lineptr: A buffer to store an input string.
- * @ptr_size: The size of lineptr.
- * @buffer: The string to assign to lineptr.
+ * _lnptr - Reassigns the lnptr variable for mygetline.
+ * @lnptr: A buffer to store an input string.
+ * @ptr_size: The size of lnptr.
+ * @buffer: The string to assign to lnptr.
  * @buffer_size: The size of buffer.
  */
-void _lineptr(char **lineptr, size_t *ptr_size,
+void _lnptr(char **lnptr, size_t *ptr_size,
 		char *buffer, size_t buffer_size)
 {
-	if (*lineptr == NULL)
+	if (*lnptr == NULL)
 	{
 		if (buffer_size > 120)
 			*ptr_size = buffer_size;
 		else
 			*ptr_size = 120;
-		*lineptr = buffer;
+		*lnptr = buffer;
 	}
 	else if (*ptr_size < buffer_size)
 	{
@@ -80,23 +80,23 @@ void _lineptr(char **lineptr, size_t *ptr_size,
 			*ptr_size = buffer_size;
 		else
 			*ptr_size = 120;
-		*lineptr = buffer;
+		*lnptr = buffer;
 	}
 	else
 	{
-		mystrcpy(*lineptr, buffer);
+		mystrcpy(*lnptr, buffer);
 		free(buffer);
 	}
 }
 
 /**
- * mygetline - Reads input from a stream.
- * @lineptr: A buffer to store the input.
+ * mygetln - Reads input from a stream.
+ * @lnptr: A buffer to store the input.
  * @ptr_size: The size of lineptr.
  * @fd: The stream to read from.
  * Return: The number of bytes read.
  */
-ssize_t mygetline(char **lineptr, size_t *ptr_size, FILE *fd)
+ssize_t mygetln(char **lineptr, size_t *ptr_size, FILE *fd)
 {
 	static ssize_t input;
 	ssize_t r;
@@ -133,7 +133,7 @@ ssize_t mygetline(char **lineptr, size_t *ptr_size, FILE *fd)
 		input++;
 	}
 	buffer[input] = '\0';
-	_lineptr(lineptr, ptr_size, buffer, input);
+	_lnptr(lnptr, ptr_size, buffer, input);
 	r = input;
 	if (i != 0)
 		input = 0;

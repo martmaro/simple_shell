@@ -70,7 +70,7 @@ typedef struct char_s
 
 char_t *aliases;
 
-ssize_t mygetln(char **lnptr, size_t *ptr_size, FILE *fd);
+ssize_t mygetline(char **lnptr, size_t *ptr_size, FILE *fd);
 void *myrealloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **mystrtok(char *ln, char *delim);
 char *_locate(char *command);
@@ -79,9 +79,9 @@ int myexecve(char **ag, char **ptr);
 void myflist(order_t *head);
 char *myitoa(int num);
 
-void _get_ln(char **ln, ssize_t read);
+void _get_line(char **line, ssize_t read);
 void myvariable(char **ag, int *exect);
-char *get_command(char *ln, int *exect);
+char *get_command(char *line, int *exect);
 int call_command(char **ag, char **ptr, int *exect);
 int execute_command(char **ag, char **ptr, int *exect);
 int handle_command(int *exect);

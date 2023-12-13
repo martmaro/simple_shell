@@ -70,24 +70,24 @@ typedef struct char_s
 
 char_t *aliases;
 
-ssize_t mygetline(char **lineptr, size_t *ptr_size, FILE *fd);
+ssize_t mygetline(char **lnptr, size_t *ptr_size, FILE *fd);
 void *myrealloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char **mystrtok(char *line, char *delim);
+char **mystrtok(char *ln, char *delim);
 char *_locate(char *command);
 order_t *mypath(char *path);
-int myexecve(char **ac, char **ptr);
+int myexecve(char **ag, char **ptr);
 void myflist(order_t *head);
 char *myitoa(int num);
 
 void _get_line(char **line, ssize_t read);
-void myvariable(char **ac, int *exect);
+void myvariable(char **ag, int *exect);
 char *get_command(char *line, int *exect);
-int call_command(char **ac, char **ptr, int *exect);
-int execute_command(char **ac, char **ptr, int *exect);
+int call_command(char **ag, char **ptr, int *exect);
+int execute_command(char **ag, char **ptr, int *exect);
 int handle_command(int *exect);
-int check_command(char **ac);
-void free_memory(char **ac, char **ptr);
-char **myalias(char **ac);
+int check_command(char **ag);
+void free_memory(char **ag, char **ptr);
+char **myalias(char **ag);
 
 int mystrlen(const char *s);
 char *mystrcat(char *dest, const char *src);
@@ -98,27 +98,27 @@ int mystrspn(char *s, char *accept);
 int mystrcmp(char *s1, char *s2);
 int mystrncmp(const char *s1, const char *s2, size_t n);
 
-int (*_builtin(char *command))(char **ac, char **ptr);
-int myexit(char **ac, char **ptr);
-int myenv(char **ac, char __attribute__((__unused__)) **ptr);
-int _setenv(char **ac, char __attribute__((__unused__)) **ptr);
-int _unsetenv(char **ac, char __attribute__((__unused__)) **ptr);
-int mycd(char **ac, char __attribute__((__unused__)) **ptr);
-int _alias(char **ac, char __attribute__((__unused__)) **ptr);
-int _help(char **ac, char __attribute__((__unused__)) **ptr);
+int (*_builtin(char *command))(char **ag, char **ptr);
+int myexit(char **ag, char **ptr);
+int myenv(char **ag, char __attribute__((__unused__)) **ptr);
+int _setenv(char **ag, char __attribute__((__unused__)) **ptr);
+int _unsetenv(char **ag, char __attribute__((__unused__)) **ptr);
+int mycd(char **ag, char __attribute__((__unused__)) **ptr);
+int _alias(char **ag, char __attribute__((__unused__)) **ptr);
+int _help(char **ag, char __attribute__((__unused__)) **ptr);
 
 char **copy_env(void);
 void _free_env(void);
 char **get_env(const char *env_var);
 
-int myerror(char **ac, int error);
-char *_env_error(char **ac);
-char *_error(char **ac);
-char *_exit_error(char **ac);
-char *directory_error(char **ac);
-char *mysyntax(char **ac);
-char *permission_denied(char **ac);
-char *command_not_found(char **ac);
+int myerror(char **ag, int error);
+char *_env_error(char **ag);
+char *_error(char **ag);
+char *_exit_error(char **ag);
+char *directory_error(char **ag);
+char *mysyntax(char **ag);
+char *permission_denied(char **ag);
+char *command_not_found(char **ag);
 
 char_t *add_node_list(char_t **head, char *name, char *value);
 void free_alias(char_t *head);

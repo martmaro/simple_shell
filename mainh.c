@@ -1,7 +1,7 @@
 #include "shell.h"
 
 void _prompt(int signal);
-int myexecve(char **ac, char **ptr);
+int myexecve(char **ag, char **ptr);
 
 /**
  * _prompt - Prints a prompt upon a signal.
